@@ -7,6 +7,7 @@
 
 % Function for Plot
  matlab_graphics;
+ load('WMM.mat');
 
  %1 for detumbling and 2 for slew 3 for tracking
  f = 3;
@@ -99,11 +100,7 @@ rho_s_panel=0.1;
 rho_d_panel=0.1;
 
 %Magnetic field
-g1_0=-29615*1e-9;
-g1_1=-1728*1e-9;
-h1_1=5186*1e-9;
-H0=sqrt(g1_0^2+g1_1^2+h1_1^2);
-axis_i=deg2rad(11.5);          %Inclination of the magnetic axis;
+         %Inclination of the magnetic axis;
 m_para=[0.03;0.04;0.05]; 
 
 
@@ -127,8 +124,8 @@ Mr=0;
 %Sensors
 accuracy_mag = deg2rad(300/60);
 accuracy_earth = deg2rad(10/60);
-%ortog = (1/3 * deg2rad(1)^2);
-ortog = 0;
+ortog = (1/3 * deg2rad(1)^2);
+
 
 %Q-METHOD
 alpha_m = 0.4;
@@ -359,7 +356,7 @@ figure(1)
 
  %Orbita plot
  figure(9)
- DisegnaOrbita(orbit.a,orbit.e,orbit.w_p,orbit.incl,orbit.omega,orbit.mu);
+ DisegnaOrbita(orbit.a,orbit.e,orbit.w_p,orbit.incl,orbit.omega);
  hold on;
  DisegnaPunto(orbit.p,orbit.e,orbit.w_p,orbit.incl,orbit.omega,0);
  hold on;
