@@ -10,7 +10,7 @@
  load('WMM.mat');
 
  %1 for detumbling and 2 for slew 3 for tracking
- f = 3;
+ f = 1;
 
  
  %Geometry
