@@ -10,7 +10,7 @@
  load('WMM.mat');
 
  %1 for detumbling and 2 for slew 3 for tracking
- f = 1;
+ f = 2;
 
  
  %Geometry
@@ -247,6 +247,8 @@ zero_w = [ 0; 0; 0];
 
 out=sim('Att_project_simulink',simtime);
 %%
+%Measured Magnetic Field versor
+M_m = out.M_meas.signals.values;
 
 %Provided  Torque
 T_c = squeeze(out.T_c.Data);
@@ -259,7 +261,7 @@ quat=out.quaternions.Data;
 
  %Average error attitude determination
  med_err_triad = mean(out.err_triad.signals.values);
-
+err_triad = out.err_triad.signals.values;
  %Angular velocities
  w = rad2deg(out.W_vec.Data);  %Deg
 
@@ -292,6 +294,7 @@ quat=out.quaternions.Data;
      T_mod(i,1)=norm(K(i,:));
      Hn_var(i,:) = Hn_mod(i,:) - hn0;
      K_var(i)=K(i,1)-K0;
+     n(i) = quat(i,1)^2 + quat(i,2)^2 + quat(i,3)^2 + quat(i,4)^2;
  end
  
 
@@ -369,7 +372,7 @@ figure(1)
 
  figure(10)
  plot(t,movmean(att_err,100));
- title('Attitude error');
+ title('Pointing error');
  xlabel('Time [s]');
  ylabel('[Deg]');
  grid on;
@@ -396,6 +399,18 @@ figure(1)
  xlabel('Time [s]');
  ylabel('Torque [Nm]');
  legend('T_x','T_y','T_z');
+
+ figure(13)
+ plot(t,movmean(err_triad,150));
+ title('Triad Error');
+ xlabel('Time [s]');
+ ylabel('Error [Deg]');
+
+ figure(14)
+ plot(t,M_m(:,1),t,M_m(:,2),t,M_m(:,3));
+ title('Measured Magnetic Field Versor');
+ xlabel('Time [s]');
+ legend('X','Y','Z');
 
 
  
