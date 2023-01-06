@@ -72,7 +72,7 @@ classdef block < handle
                     if length(obj.tspan)<10000
                     pause(1/100)
                     else
-                        pause(1/1000)
+                        pause(1/10000)
                     end
                 end
         end

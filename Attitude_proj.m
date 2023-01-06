@@ -10,7 +10,7 @@
  load('WMM.mat');
 
  %1 for detumbling and 2 for slew 3 for tracking
- f = 2;
+ f = 3;
 
  
  %Geometry
@@ -187,7 +187,7 @@ A_T =[1 0 0;
 case 3
 
 %Tracking
-w0x= 0.0001; w0y = orbit.n + 0.005 ;w0z = 0.0002; w0r=0; 
+w0x= 0.0001; w0y = orbit.n + 0.0005 ;w0z = 0.0002; w0r=0; 
 
 %A_release for Tracking
 A_R_BL=[ 1 0 0;
